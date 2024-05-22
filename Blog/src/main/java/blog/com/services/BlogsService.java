@@ -36,6 +36,26 @@ public class BlogsService {
 				return false;
 			}
 	}	
+	
+	public Blogs blogEditCheck(Long blogId) {
+		if(blogId == null) {
+			return null;
+		}else {
+			return blogsDao.findByBlogId(blogId);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 }
 

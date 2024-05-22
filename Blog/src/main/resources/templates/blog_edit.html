@@ -6,17 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlogEditPage</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
     <header>
         <!--スマートフォン-->
         <nav class="menu">
-            <div class="pc-logo">
-                <a href="#"><img src="/pic/blog.png" alt="Blog Logo"></a>
-            </div>
             <div class="menu-contents">
                 <div class="menu-inner">
                     <ul>
@@ -35,11 +32,11 @@
         <nav class="pc">
             <div class="pc-inner">
                 <ul class="pc-list">
-                    <li class="pc-list__item" text="accountName"></li>
-                    <li class="pc-list__item"><a href="/blog/home">ホームページ</a></li>
-                    <li class="pc-list__item"><a href="/blog/list">記事一覧</a></li>
-                    <li class="pc-list__item"><a href="/account/login">ログイン</a></li>
-                    <li class="pc-list__item"><a href="/account/logout">ログアウト</a></li>
+                    <li class="pc-list__item" th:text="${accountName}"></li>
+                    <li class="pc-list__item"><a th:href="@{/blog/home}">ホームページ</a></li>
+                    <li class="pc-list__item"><a th:href="@{/blog/list}">記事一覧</a></li>
+                    <li class="pc-list__item"><a th:href="@{/account/login}">ログイン</a></li>
+                    <li class="pc-list__item"><a th:href="@{/account/logout}">ログアウト</a></li>
                 </ul>
             </div>
         </nav>
@@ -47,12 +44,12 @@
     <main>
         <div class="main-inner">
             <section class="register-section">
-                <h2>ブローグ編集画面</h2>
-                <form action="" method="post" enctype="multipart/form-data">
+                <h2>ブログ編集画面</h2>
+                <form th:action="@{/blog/edit/process}" method="post" enctype="multipart/form-data">
                     <div class="register-section-details">
                         <div class="register-section-details_flex">
                             <div>タイトル</div>
-                            <input type="text" name="blogName" id="blogName">
+                            <input type="text" name="blogTitle" id="blogTitle" th:value="${blogs.blogTitle}">
                         </div>
                         <div class="register-section-details_flex">
                             <div>日付</div>
@@ -60,11 +57,11 @@
                         </div>
                         <div class="register-section-details_flex">
                             <div>カテゴリー</div>
-                            <select name="productCategory">
+                            <select name="categoryName">
                                 <option value="">選択してください</option>
-                                <option value="日記">日記</option>
-                                <option value="論評">論評</option>
-                                <option value="文章">文章</option>
+                                <option value="日記" th:selected="${blogs.categoryName}=='日記'">日記</option>
+                                <option value="論評" th:selected="${blogs.categoryName}=='論評'">論評</option>
+                                <option value="文章" th:selected="${blogs.categoryName}=='文章'">文章</option>
                             </select>
                         </div>
                         <div class="register-section-details_flex">
@@ -73,12 +70,12 @@
                         </div>
                         <div class="register-section-details_flex">
                             <div>詳細</div>
-                            <textarea name="blogDescription" placeholder="編集してください"></textarea>
+                            <textarea name="article" placeholder="編集してください" th:text="${blogs.article}"></textarea>
                         </div>
                     </div>
                     <div class="register-section-details_flex">
-                        <button class="register" type="submit">更新</button>
-                        <button class="delete-button" onclick="handleDelete();" type="button">削除</button>
+                    <button class="register" type="submit">更新</button>
+                    <button class="delete-button" onclick="handleDelete();" type="button">削除</button>
                     </div>
                 </form>
             </section>

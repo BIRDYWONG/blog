@@ -19,7 +19,7 @@
             <div class="pc-inner"> -->
               
         <h1>Register</h1>
-        <form class="register-form" th:action="/account/register/process" method="post">
+        <form class="register-form" th:action="@{/account/register/process}" method="post">
             <div class="control-group">
                 <label class="register-field-icon" for="login-username">Username</label>
                 <input type="text" class="login-field" value="" placeholder="ユーザー名" id="login-name" name="accountName">

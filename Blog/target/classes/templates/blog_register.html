@@ -14,8 +14,8 @@
     <header>
         <!--スマートフォン-->
         <nav class="menu">
-            <div class="pc-logo">
-                <a href="#"><img th:src="@{/pic/blog.png}" alt="Blog Logo"></a>
+            <div class="logo">
+                <a href="#"><img th:src="@{/images/blog.png}" alt="Blog Logo"></a>
             </div>
             <div class="menu-contents">
                 <div class="menu-inner">
@@ -35,7 +35,7 @@
         <nav class="pc">
             <div class="pc-inner">
                 <ul class="pc-list">
-                    <li class="pc-list__item" th:text="{accountName}"></li>
+                    <li class="pc-list__item" th:text="${accountName}"></li>
                     <li class="pc-list__item"><a th:href="@{/blog/list}">ホームページ</a></li>
                     <li class="pc-list__item"><a th:href="@{/blog/list}">記事一覧</a></li>
                     <li class="pc-list__item"><a th:href="@{/account/login}">ログイン</a></li>
@@ -48,11 +48,11 @@
         <div class="main-inner">
             <section class="register-section">
                 <h2>ブローグ登録画面</h2>
-                <form action="" method="post" enctype="multipart/form-data">
+                <form th:action="@{/blog/register/process}" method="post" enctype="multipart/form-data">
                     <div class="register-section-details">
                         <div class="register-section-details_flex">
                             <div>タイトル</div>
-                            <input type="text" name="blogName" id="blogName">
+                            <input type="text" name="blogTitle" id="blogTitle">
                         </div>
                         <div class="register-section-details_flex">
                             <div>日付</div>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="register-section-details_flex">
                             <div>カテゴリー</div>
-                            <select name="productCategory">
+                            <select name="categoryName">
                                 <option value="">選択してください</option>
                                 <option value="日記">日記</option>
                                 <option value="論評">論評</option>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="register-section-details_flex">
                             <div>詳細</div>
-                            <textarea name="blogDescription" placeholder="何か記録したいの"></textarea>
+                            <textarea name="article" placeholder="何か記録したいの"></textarea>
                         </div>
                     </div>
                     <div class="register-section-details_flex">
